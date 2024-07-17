@@ -5,84 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Details - FlyAway</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .flight-info, .passenger-info, .booking-summary {
-            display: flex;
-            justify-content: space-between;
-        }
-        .flight-info div, .passenger-info div, .booking-summary div {
-            width: 48%;
-        }
-        .flight-info table, .passenger-info table, .booking-summary table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .flight-info th, .passenger-info th, .booking-summary th,
-        .flight-info td, .passenger-info td, .booking-summary td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .flight-info th, .passenger-info th, .booking-summary th {
-            background-color: #f2f2f2;
-        }
-        .button-container {
-            text-align: center;
-        }
-        .button-container button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        .button-container button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="css/booking.css">
 </head>
 <body>
 <div class="navbar">
     <a href="index.jsp">Home</a>
-    <a href="search.jsp">Search Flights</a>
-    <a href="bookings.jsp">My Bookings</a>
-    <a href="contact.jsp">Contact</a>
+    <a href="flight-details.jsp">Flights</a>
+    <a href="passengerDetails.jsp">Passenger</a>
 </div>
 
 <div class="container">
@@ -117,7 +46,7 @@
                     </tr>
                     <tr>
                         <th>Flight Number</th>
-                        <td>FL123</td>
+                        <td><%= request.getAttribute("selectedFlight") %></td>
                     </tr>
                     <tr>
                         <th>Class</th>
@@ -139,7 +68,7 @@
                 <table>
                     <tr>
                         <th>Passenger Name</th>
-                        <td>John Doe</td>
+                        <td><%= request.getAttribute("name") %></td>
                     </tr>
                     <tr>
                         <th>Email</th>

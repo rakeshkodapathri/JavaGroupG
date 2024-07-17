@@ -10,15 +10,6 @@
         <load-on-startup>3</load-on-startup>
     </servlet>
 
-    <servlet>
-        <servlet-name>homeServlet</servlet-name>
-        <servlet-class>com.backend.codes.practise16june.HelloServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>homeServlet</servlet-name>
-        <url-pattern>/homeServlet</url-pattern>
-    </servlet-mapping>
-
 
 <!--    <servlet>-->
 <!--        <servlet-name>flightDetailsServlet</servlet-name>-->
@@ -29,16 +20,6 @@
 <!--        <url-pattern>/flightDetailsServlet</url-pattern>-->
 <!--    </servlet-mapping>-->
 
-
-    <servlet>
-        <servlet-name>CityServlet</servlet-name>
-        <servlet-class>com.backend.codes.practise16june.CityServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>CityServlet</servlet-name>
-        <url-pattern>/CityServlet</url-pattern>
-    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>jsp</servlet-name>

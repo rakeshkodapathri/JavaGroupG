@@ -22,6 +22,8 @@ public class FlightDetailsServlet extends HttpServlet {
         String fromCity = request.getParameter("fromCity");
         String toCity = request.getParameter("toCity");
         String departureDate = request.getParameter("departureDate");
+        Integer noOfPassengers = Integer.parseInt(request.getParameter("passengers"));
+
 
         List<Flight> availableFlights = getAvailableFlights(fromCity, toCity, departureDate);
 
@@ -29,6 +31,7 @@ public class FlightDetailsServlet extends HttpServlet {
         request.setAttribute("fromCity", fromCity);
         request.setAttribute("toCity", toCity);
         request.setAttribute("departureDate", departureDate);
+        request.setAttribute("noOfPassengers", noOfPassengers);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("flight-details.jsp");
         dispatcher.forward(request, response);
@@ -43,11 +46,12 @@ public class FlightDetailsServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-            String sql = "SELECT * FROM flights WHERE from_city = ? AND to_city = ? AND departure_time >= ?";
+            //String sql = "SELECT * FROM flights WHERE from_city = ? AND to_city = ? AND departure_time >= ?";
+            String sql = "SELECT * FROM flights";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, fromCity);
-            statement.setString(2, toCity);
-            statement.setString(3, departureDate);
+//            statement.setString(1, fromCity);
+//            statement.setString(2, toCity);
+//            statement.setString(3, departureDate);
 
             Flight flight2 = new Flight();
             flight2.setFlightNumber("234");

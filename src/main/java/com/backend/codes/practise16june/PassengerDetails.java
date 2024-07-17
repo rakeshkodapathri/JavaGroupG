@@ -8,24 +8,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 
-@WebServlet("/SelectedFlightServlet")
-public class SelectedFlightServlet extends HttpServlet {
+@WebServlet("/PassengerDetails")
+public class PassengerDetails extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String selectedFlight = request.getParameter("selectedFlight");
-        String name = request.getParameter("fullname");
-        String dob = request.getParameter("dob");
-        String Passport = request.getParameter("passport");
+        Integer noOfPassengers = Integer.parseInt(request.getParameter("noOfPassengers"));
 
-        // You can process the selected flight here, for example, saving it to the session or database
-
+        request.setAttribute("flightNumber", selectedFlight);
         request.setAttribute("selectedFlight", selectedFlight);
-        request.setAttribute("name", name);
-        request.setAttribute("dob", dob);
-        request.setAttribute("Passport", Passport);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("booking.jsp");
+        request.setAttribute("noOfPassengers", noOfPassengers);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("passengerDetails.jsp");
         dispatcher.forward(request, response);
     }
 }
