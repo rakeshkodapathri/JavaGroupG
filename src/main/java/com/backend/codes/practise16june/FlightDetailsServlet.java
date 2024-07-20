@@ -3,6 +3,9 @@ package com.backend.codes.practise16june;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/FlightDetailsServlet")
 public class FlightDetailsServlet extends HttpServlet {
@@ -21,23 +25,26 @@ public class FlightDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fromCity = request.getParameter("fromCity");
         String toCity = request.getParameter("toCity");
-        String departureDate = request.getParameter("departureDate");
+        String departureStart = request.getParameter("departureStart");
+        String departureEnd = request.getParameter("departureEnd");
         Integer noOfPassengers = Integer.parseInt(request.getParameter("passengers"));
 
+        HttpSession session = request.getSession();
+        session.setAttribute("fromCity", fromCity);
+        session.setAttribute("toCity", toCity);
+        session.setAttribute("departureStart", departureStart);
+        session.setAttribute("departureEnd", departureEnd);
+        session.setAttribute("noOfPassengers", noOfPassengers);
 
-        List<Flight> availableFlights = getAvailableFlights(fromCity, toCity, departureDate);
+        List<Flight> availableFlights = getAvailableFlights(fromCity, toCity, departureStart, departureEnd,noOfPassengers);
 
-        request.setAttribute("availableFlights", availableFlights);
-        request.setAttribute("fromCity", fromCity);
-        request.setAttribute("toCity", toCity);
-        request.setAttribute("departureDate", departureDate);
-        request.setAttribute("noOfPassengers", noOfPassengers);
+        session.setAttribute("availableFlights", availableFlights);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("flight-details.jsp");
         dispatcher.forward(request, response);
     }
 
-    private List<Flight> getAvailableFlights(String fromCity, String toCity, String departureDate) {
+    private List<Flight> getAvailableFlights(String fromCity, String toCity, String departureStart, String departureEnd, Integer noOfPassengers) {
         List<Flight> flights = new ArrayList<>();
         String jdbcURL = "jdbc:mysql://localhost:3306/ebookShop";
         String dbUser = "root";
@@ -46,21 +53,21 @@ public class FlightDetailsServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-            //String sql = "SELECT * FROM flights WHERE from_city = ? AND to_city = ? AND departure_time >= ?";
-            String sql = "SELECT * FROM flights";
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsedStartDate = dateFormat.parse(departureStart);
+            java.util.Date parsedEndDate = dateFormat.parse(departureEnd);
+            java.sql.Date sqlStartDate = new java.sql.Date(parsedStartDate.getTime());
+            java.sql.Date sqlEndDate = new java.sql.Date(parsedEndDate.getTime());
+
+            String sql = "SELECT * FROM flights WHERE from_city = ? AND to_city = ? AND departure_date between ? and ? and seats_available >= ?";
+//            String sql = "SELECT * FROM flights";
             PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setString(1, fromCity);
-//            statement.setString(2, toCity);
-//            statement.setString(3, departureDate);
+            statement.setString(1, fromCity);
+            statement.setString(2, toCity);
+            statement.setDate(3, sqlStartDate);
+            statement.setDate(4, sqlEndDate);
+            statement.setInt(5, noOfPassengers);
 
-            Flight flight2 = new Flight();
-            flight2.setFlightNumber("234");
-            flight2.setAirline(departureDate);
-            flight2.setFromCity(fromCity);
-            flight2.setToCity(toCity);
-            flight2.setPrice(12.00);
-
-            flights.add(flight2);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -72,6 +79,8 @@ public class FlightDetailsServlet extends HttpServlet {
                 flight.setDepartureTime(resultSet.getTime("departure_time"));
                 flight.setArrivalTime(resultSet.getTime("arrival_time"));
                 flight.setPrice(resultSet.getDouble("price"));
+                flight.setDepartureDate(resultSet.getString("departure_date"));
+                flight.setSeats_Available(resultSet.getString("seats_available"));
 
                 flights.add(flight);
             }

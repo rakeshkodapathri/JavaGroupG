@@ -10,15 +10,15 @@
         <load-on-startup>3</load-on-startup>
     </servlet>
 
-
 <!--    <servlet>-->
-<!--        <servlet-name>flightDetailsServlet</servlet-name>-->
-<!--        <servlet-class>com.backend.codes.practise16june.FlightDetailsServlet</servlet-class>-->
+<!--        <servlet-name>CityServlet</servlet-name>-->
+<!--        <servlet-class>com.backend.codes.practise16june.CityServlet</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
-<!--        <servlet-name>flightDetailsServlet</servlet-name>-->
-<!--        <url-pattern>/flightDetailsServlet</url-pattern>-->
+<!--        <servlet-name>CityServlet</servlet-name>-->
+<!--        <url-pattern>/CityServlet</url-pattern>-->
 <!--    </servlet-mapping>-->
+
 
 
     <servlet-mapping>

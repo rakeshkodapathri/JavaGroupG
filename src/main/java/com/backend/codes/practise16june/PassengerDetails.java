@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/PassengerDetails")
 public class PassengerDetails extends HttpServlet {
@@ -14,11 +15,10 @@ public class PassengerDetails extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String selectedFlight = request.getParameter("selectedFlight");
-        Integer noOfPassengers = Integer.parseInt(request.getParameter("noOfPassengers"));
 
-        request.setAttribute("flightNumber", selectedFlight);
-        request.setAttribute("selectedFlight", selectedFlight);
-        request.setAttribute("noOfPassengers", noOfPassengers);
+        HttpSession session = request.getSession();
+        session.setAttribute("selectedFlight", selectedFlight);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("passengerDetails.jsp");
         dispatcher.forward(request, response);
     }

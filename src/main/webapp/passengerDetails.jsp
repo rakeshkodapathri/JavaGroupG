@@ -1,3 +1,4 @@
+<%@ page import="com.backend.codes.practise16june.Flight" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="css/passenger.css">
     <script src ="scripts/passengerDetails.js"></script>
 </head>
-<body>
+<body onload="addPassengerFields()">
 
 <div class="navbar">
     <a href="index.jsp">Home</a>
@@ -16,11 +17,15 @@
 
 <div class="flight-details">
     <h2>Selected Flight Details</h2>
-    <p>Flight Number: <%= request.getAttribute("selectedFlight") %></p>
+    <p>Flight Number: <%= session.getAttribute("selectedFlight") %></p>
+
 </div>
 
-<h2>Enter Passenger Details</h2>
+
 <form action="SelectedFlightServlet" method="POST">
+    <label for = "numPassengers"> No Of Passengers </label>
+    <Input id = "numPassengers" name = "numPassengers" type="text" value=<%= session.getAttribute("noOfPassengers") %> disabled>
+    <h2>Enter Passenger Details</h2>
         <div id="passengerContainer">
             <!-- Passenger details dynamically added here -->
         </div>

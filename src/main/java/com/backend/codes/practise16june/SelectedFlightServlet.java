@@ -14,16 +14,20 @@ public class SelectedFlightServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String selectedFlight = request.getParameter("selectedFlight");
-        String name = request.getParameter("fullname");
-        String dob = request.getParameter("dob");
-        String Passport = request.getParameter("passport");
+        int numPassengers = Integer.parseInt(request.getParameter("numPassengers"));
 
-        // You can process the selected flight here, for example, saving it to the session or database
+        for (int i = 1; i <= numPassengers; i++) {
+            // Retrieve form parameters for each passenger
+            String fullname = request.getParameter("fullname" + i);
+            String dob = request.getParameter("dob" + i);
+            String gender = request.getParameter("gender" + i);
+            String passport = request.getParameter("passport" + i);
+
+
+        }
+            // You can process the selected flight here, for example, saving it to the session or database
 
         request.setAttribute("selectedFlight", selectedFlight);
-        request.setAttribute("name", name);
-        request.setAttribute("dob", dob);
-        request.setAttribute("Passport", Passport);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("booking.jsp");
         dispatcher.forward(request, response);

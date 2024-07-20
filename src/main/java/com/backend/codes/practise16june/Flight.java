@@ -8,6 +8,8 @@ public class Flight {
     private java.sql.Time departureTime;
     private java.sql.Time arrivalTime;
     private double price;
+    private String departureDate;
+    private String seats_Available;
 
     // Getters and Setters
     public String getFlightNumber() { return flightNumber; }
@@ -30,4 +32,10 @@ public class Flight {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+
+    public String getDepartureDate() { return departureDate; }
+    public void setDepartureDate(String departureDate) {this.departureDate = departureDate; }
+
+    public String getSeats_Available() { return seats_Available; }
+    public void setSeats_Available(String seats_Available) { this.seats_Available = seats_Available;}
 }
