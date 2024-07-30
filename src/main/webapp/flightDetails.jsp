@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.List" %>
-<%@ page import="com.backend.codes.practise16june.Flight" %>
+<%@ page import="com.backend.codes.FlightManagementSystemGroupG.Flight" %>\
+<%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +11,14 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="index.jsp">Home</a>
+    <a href="HomePageServlet">Home</a>
+    <a style="float: right" href="LoginServlet">Log Out</a>
+
 </div>
 <div class="container">
     <div class="section">
         <h2>Available Flights</h2>
-        <form action="PassengerDetails" method="post">
+        <form action="FlightDetailsServlet" method="post">
             <label for = "noOfPassengers"> No Of Passengers </label>
             <Input name = "noOfPassengers" id = "noOfPassengers" type="text"
                    value = <%= session.getAttribute("noOfPassengers") %> readonly >
@@ -36,10 +39,14 @@
                     <%
                         List<Flight> availableFlights = (List<Flight>) session.getAttribute("availableFlights");
                         for (Flight flight : availableFlights) {
+                            String flightJson = new Gson().toJson(flight); // Serialize the flight object to JSON
+
                     %>
                     <tr>
-                        <td><input type="radio" name="selectedFlight" value="<%= flight.getFlightNumber() %>" required></td>
-                        <td><%= flight.getFlightNumber() %></td>
+                        <td>
+                            <input type="radio" name="selectedFlight" value='<%= flightJson %>' required>
+                        </td>
+                        <td><%= flight.getFlightNumber() %>></td>
                         <td><%= flight.getAirline() %></td>
                         <td><%= flight.getFromCity() %></td>
                         <td><%= flight.getToCity() %></td>

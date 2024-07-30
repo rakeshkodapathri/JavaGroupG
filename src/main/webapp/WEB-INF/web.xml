@@ -12,7 +12,7 @@
 
 <!--    <servlet>-->
 <!--        <servlet-name>CityServlet</servlet-name>-->
-<!--        <servlet-class>com.backend.codes.practise16june.CityServlet</servlet-class>-->
+<!--        <servlet-class>com.backend.codes.FlightManagementSystemGroupG.CityServlet</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>CityServlet</servlet-name>-->

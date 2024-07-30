@@ -1,11 +1,8 @@
-package com.backend.codes.practise16june;
+package com.backend.codes.FlightManagementSystemGroupG;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,41 +15,45 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/FlightDetailsServlet")
-public class FlightDetailsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet("/HomePageServlet")
+public class HomePageServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("HomePage.jsp");
+        dispatcher.forward(request, response);
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String fromCity = request.getParameter("fromCity");
-        String toCity = request.getParameter("toCity");
-        String departureStart = request.getParameter("departureStart");
-        String departureEnd = request.getParameter("departureEnd");
-        Integer noOfPassengers = Integer.parseInt(request.getParameter("passengers"));
-
         HttpSession session = request.getSession();
-        session.setAttribute("fromCity", fromCity);
-        session.setAttribute("toCity", toCity);
-        session.setAttribute("departureStart", departureStart);
-        session.setAttribute("departureEnd", departureEnd);
-        session.setAttribute("noOfPassengers", noOfPassengers);
+        if (session.getAttribute("user") == null) {
+            response.sendRedirect("login.jsp");
+        }
+        else{
+            String fromCity = request.getParameter("fromCity");
+            String toCity = request.getParameter("toCity");
+            String departureStart = request.getParameter("departureStart");
+            String departureEnd = request.getParameter("departureEnd");
+            Integer noOfPassengers = Integer.parseInt(request.getParameter("passengers"));
 
-        List<Flight> availableFlights = getAvailableFlights(fromCity, toCity, departureStart, departureEnd,noOfPassengers);
+            session.setAttribute("fromCity", fromCity);
+            session.setAttribute("toCity", toCity);
+            session.setAttribute("departureStart", departureStart);
+            session.setAttribute("departureEnd", departureEnd);
+            session.setAttribute("noOfPassengers", noOfPassengers);
 
-        session.setAttribute("availableFlights", availableFlights);
+            List<Flight> availableFlights = getAvailableFlights(fromCity, toCity, departureStart, departureEnd,noOfPassengers);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("flight-details.jsp");
-        dispatcher.forward(request, response);
+            session.setAttribute("availableFlights", availableFlights);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("flightDetails.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     private List<Flight> getAvailableFlights(String fromCity, String toCity, String departureStart, String departureEnd, Integer noOfPassengers) {
         List<Flight> flights = new ArrayList<>();
-        String jdbcURL = "jdbc:mysql://localhost:3306/ebookShop";
-        String dbUser = "root";
-        String dbPassword = "Raki@230";
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+            Connection connection = DatabaseUtil.getConnection();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsedStartDate = dateFormat.parse(departureStart);
             java.util.Date parsedEndDate = dateFormat.parse(departureEnd);

@@ -1,4 +1,4 @@
-package com.backend.codes.practise16june;
+package com.backend.codes.FlightManagementSystemGroupG;
 
 public class Flight {
     private String flightNumber;

@@ -1,51 +1,43 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-.navbar {
-    background-color: #333;
-    overflow: hidden;
-}
-.navbar a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-}
-.navbar a:hover {
-    background-color: #ddd;
-    color: black;
-}
-.container {
-    padding: 20px;
-}
-.header {
-    background-image: url('flight.jpeg');
+    font-family: Arial, sans-serif;
+    background-image: url('https://ik.imgkit.net/3vlqs5axxjf/TW/ik-seo/uploadedImages/Art/Shutterstock_Art/2023/T0227AIRPLANE_SS_HR/Airfares-are-down-right-now.-Will-they-stay-that-w.jpg?tr=w-780%2Ch-440%2Cfo-auto'); /* Replace with your flight image URL */
     background-size: cover;
-    padding: 100px;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.container {
     text-align: center;
-    color: white;
+    margin-top: 100px;
 }
-.header h1 {
-    font-size: 50px;
+
+.container h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
-.search-form {
-    margin: 20px 0;
+
+.buttons {
+    margin-top: 20px;
 }
-.search-form input, .search-form select {
-    padding: 10px;
+
+.buttons a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
     margin: 5px;
-    width: 200px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
-.featured, .testimonials {
-    margin: 20px 0;
-}
-.featured h2, .testimonials h2 {
-    text-align: center;
-}
-.featured .destination, .testimonials .testimonial {
-    margin: 10px 0;
+
+.buttons a:hover {
+    background-color: #0056b3;
 }

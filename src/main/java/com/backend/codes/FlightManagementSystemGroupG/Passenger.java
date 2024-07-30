@@ -1,4 +1,4 @@
-package com.backend.codes.practise16june;
+package com.backend.codes.FlightManagementSystemGroupG;
 
 public class Passenger {
     private String fullName;
@@ -26,5 +26,6 @@ public class Passenger {
 
     public String getGender() { return gender; }
     public void setGender(String gender) { this.gender = gender; }
+
 
 }

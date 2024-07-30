@@ -1,13 +1,10 @@
-package com.backend.codes.practise16june;
+package com.backend.codes.FlightManagementSystemGroupG;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.List;
-import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,16 +19,12 @@ public class CityServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String jdbcUrl = "jdbc:mysql://localhost:3306/ebookShop";
-        String jdbcUser = "root";
-        String jdbcPassword = "Raki@230";
         String query = "SELECT name FROM cities";
 
         out.println("<option value=\"" + "Paris" + "\">" + "cityName" + "</option>");
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+            Connection connection = DatabaseUtil.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 

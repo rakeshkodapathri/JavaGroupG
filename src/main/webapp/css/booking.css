@@ -20,50 +20,52 @@ body {
     background-color: #ddd;
     color: black;
 }
+
 .container {
     width: 80%;
+    max-width: 1000px;
     margin: 20px auto;
     background-color: white;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.section {
-    margin-bottom: 20px;
-}
-.section h2 {
+h1, h2 {
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
 }
-.flight-info, .passenger-info, .booking-summary {
-    display: flex;
-    justify-content: space-between;
-}
-.flight-info div, .passenger-info div, .booking-summary div {
-    width: 48%;
-}
-.flight-info table, .passenger-info table, .booking-summary table {
+table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
-.flight-info th, .passenger-info th, .booking-summary th,
-.flight-info td, .passenger-info td, .booking-summary td {
+table, th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+}
+th, td {
+    padding: 10px;
     text-align: left;
 }
-.flight-info th, .passenger-info th, .booking-summary th {
+th {
     background-color: #f2f2f2;
 }
-.button-container {
+form {
     text-align: center;
 }
-.button-container button {
+form input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
 }
-.button-container button:hover {
+form input[type="submit"]:hover {
     background-color: #45a049;
+}
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

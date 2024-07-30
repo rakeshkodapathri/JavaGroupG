@@ -12,8 +12,14 @@ function addPassengerFields() {
                     <label for="fullname${i}">Full Name:</label>
                     <input type="text" id="fullname${i}" name="fullname${i}" required>
 
-                    <label for="dob${i}">Date of Birth:</label>
-                    <input type="date" id="dob${i}" name="dob${i}" required>
+                    <label for="email${i}">Email Id:</label>
+                    <input type="text" id="emaili${i}" name="email${i}" required>
+
+                    <label for="phone${i}">Phone number: </label>
+                    <input type="text" id="phone${i}" name="phone${i}" required>
+
+                    <label for="age${i}">Age:</label>
+                    <input type="text" id="age${i}" name="age${i}" required>
 
                     <label for="gender${i}">Gender:</label>
                     <select id="gender${i}" name="gender${i}" required>
