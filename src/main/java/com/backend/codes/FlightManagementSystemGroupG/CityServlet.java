@@ -21,8 +21,6 @@ public class CityServlet extends HttpServlet {
 
         String query = "SELECT name FROM cities";
 
-        out.println("<option value=\"" + "Paris" + "\">" + "cityName" + "</option>");
-
         try {
             Connection connection = DatabaseUtil.getConnection();
             Statement statement = connection.createStatement();

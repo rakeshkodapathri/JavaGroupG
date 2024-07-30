@@ -9,7 +9,6 @@
 <div class="container">
     <h1>Flight Reservation System</h1>
     <div class="buttons">
-        <a href="RegisterServlet">Register</a>
         <a href="LoginServlet">Login</a>
     </div>
 </div>

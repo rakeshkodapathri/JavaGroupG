@@ -12,28 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Booking App</title>
     <link rel = "stylesheet" href="css/HomePage.css">
-    <script>
-        function sendPostRequest() {
-            fetch('allBookingsServlet', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    // Your request payload here
-                })
-            })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
 </head>
 <body>
 
 <div class="navbar">
     <a href="HomePage.jsp">Home</a>
     <a href="allBookingsServlet">Bookings</a>
+    <% if (session.getAttribute("role").equals("ADMIN")) {%>
+        <a href ="RegisterServlet" > Register User</a>
+    <%}%>
     <a style="float: right" href="LoginServlet">Log Out</a>
 </div>
 
@@ -58,7 +45,7 @@
             <%
                 // Use a servlet to get city data from the database
                 try {
-                    URL url = new URL("http://localhost:8080/practise16June_war_exploded/CityServlet");
+                    URL url = new URL("http://localhost:8080/FlightManagementSystemGroupG_war_exploded/CityServlet");
                     BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
                     String inputLine;
                     while ((inputLine = in.readLine()) != null) {
@@ -77,7 +64,7 @@
             <%
                 // Use a servlet to get city data from the database
                 try {
-                    URL url = new URL("http://localhost:8080/practise16June_war_exploded/CityServlet");
+                    URL url = new URL("http://localhost:8080/FlightManagementSystemGroupG_war_exploded/CityServlet");
                     BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
                     String inputLine;
                     while ((inputLine = in.readLine()) != null) {

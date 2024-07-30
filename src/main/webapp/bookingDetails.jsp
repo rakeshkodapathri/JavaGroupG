@@ -79,6 +79,7 @@
             <th>Gender</th>
             <% if (session.getAttribute("role").equals("ADMIN")) {%>
             <th>Update</th>
+            <th>Delete</th>
             <%}%>
         </tr>
         <%
@@ -103,6 +104,13 @@
                     <input type="hidden" name="gender" value="<%= passenger.getGender() %>">
                     <input type = "hidden" name = "bookingId" value = "<%= request.getParameter("bookingId")%>">
                     <input type="submit" value="Update">
+                </form>
+            </td>
+            <td>
+                <form action="DeletePassengerServlet" method="post">
+                    <input type="hidden" name="passportNum" value="<%= passenger.getPassportNum() %>">
+                    <input type = "hidden" name = "bookingId" value = "<%= request.getParameter("bookingId")%>">
+                    <input type="submit" value="Delete">
                 </form>
             </td>
             <%}%>

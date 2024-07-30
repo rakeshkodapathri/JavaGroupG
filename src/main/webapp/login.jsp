@@ -60,9 +60,7 @@
 
         <input type="submit" value="Login">
     </form>
-    <div class="footer">
-        <p>Don't have an account? <a href="RegisterServlet">Register</a></p>
-    </div>
+
 </div>
 </body>
 </html>
