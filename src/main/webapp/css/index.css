@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://ik.imgkit.net/3vlqs5axxjf/TW/ik-seo/uploadedImages/Art/Shutterstock_Art/2023/T0227AIRPLANE_SS_HR/Airfares-are-down-right-now.-Will-they-stay-that-w.jpg?tr=w-780%2Ch-440%2Cfo-auto'); /* Replace with your flight image URL */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.container h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.buttons a:hover {
+    background-color: #0056b3;
+}
