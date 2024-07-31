@@ -38,7 +38,7 @@ public class allBookingsServlet extends HttpServlet {
                 }
                 connection.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.log(e.getMessage());
             }
             session.setAttribute("allBookings", allBookings);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/allBookings.jsp");

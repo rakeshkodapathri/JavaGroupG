@@ -4,21 +4,33 @@
 <%@ page import="com.backend.codes.FlightManagementSystemGroupG.Flight" %>
 <%@ page import="com.backend.codes.FlightManagementSystemGroupG.Passenger" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight and Passenger Details</title>
-    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-<div class="navbar">
-    <a href="HomePageServlet">Home</a>
-    <a href="FlightDetailsServlet"> Flights </a>
-    <a href="PassengerDetailsServlet"> Passenger Details </a>
-    <a style="float: right" href="LoginServlet">Log Out</a>
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="HomePageServlet">FlyAway</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="FlightDetailsServlet">Flights</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="PassengerDetailsServlet">Passenger Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="LoginServlet">Log Out</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
     <h1>Flight Details</h1>
     <%
         // Retrieve flight details from session
@@ -27,10 +39,11 @@
         Flight flight = gson.fromJson(selectedFlightJson, Flight.class);
 
         if (flight == null) {
-            out.println("<p>No flight details available.</p>");
+            out.println("<div class='alert alert-warning' role='alert'>No flight details available.</div>");
         } else {
     %>
-    <table>
+    <table class="table table-bordered">
+        <thead class="thead-light">
         <tr>
             <th>Flight Number</th>
             <th>Airline</th>
@@ -42,6 +55,8 @@
             <th>Departure Date</th>
             <th>Seats Available</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td><%= flight.getFlightNumber() %></td>
             <td><%= flight.getAirline() %></td>
@@ -53,6 +68,7 @@
             <td><%= flight.getDepartureDate() %></td>
             <td><%= flight.getSeats_Available() %></td>
         </tr>
+        </tbody>
     </table>
     <%
         }
@@ -63,10 +79,11 @@
         // Retrieve number of passengers from session
         Integer numPassengers = (Integer) session.getAttribute("noOfPassengers");
         if (numPassengers == null || numPassengers == 0) {
-            out.println("<p>No passenger details available.</p>");
+            out.println("<div class='alert alert-warning' role='alert'>No passenger details available.</div>");
         } else {
     %>
-    <table>
+    <table class="table table-bordered">
+        <thead class="thead-light">
         <tr>
             <th>Full Name</th>
             <th>Age</th>
@@ -75,6 +92,8 @@
             <th>Passport Number</th>
             <th>Gender</th>
         </tr>
+        </thead>
+        <tbody>
         <%
             // Retrieve passenger details from session if available
             List<Passenger> passengers = (List<Passenger>) session.getAttribute("passengerDetails");
@@ -92,15 +111,21 @@
         <%
             }
         %>
+        </tbody>
     </table>
     <%
         }
     %>
-    <form action="confirmBooking" method="post">
+
+    <form action="confirmBooking" method="post" class="mt-4">
         <input type="hidden" name="selectedFlight" value='<%= selectedFlightJson %>'>
-        <input type="submit" value="Confirm Booking">
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
-

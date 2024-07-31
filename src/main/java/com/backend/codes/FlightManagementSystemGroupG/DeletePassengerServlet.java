@@ -41,14 +41,14 @@ public class DeletePassengerServlet extends HttpServlet {
                 }
                 if (conn != null) conn.close();
             } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+                Logger.log(e.getMessage());
                 session.setAttribute("error", "Error updating passenger details: " + e.getMessage());
                 response.sendRedirect("bookingDetails.jsp");
             } finally {
                 try {
                     if (pstmt != null) pstmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logger.log(e.getMessage());
                 }
             }
         }

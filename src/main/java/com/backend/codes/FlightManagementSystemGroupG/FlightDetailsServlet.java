@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/FlightDetailsServlet")
 public class FlightDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("passengerDetails.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("flightDetails.jsp");
         dispatcher.forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

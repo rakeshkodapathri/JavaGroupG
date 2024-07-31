@@ -37,7 +37,7 @@ public class ConfirmBookingServlet extends HttpServlet {
                     String bookingId = saveBookingToDatabase(flight, passengers, noOfPasengers, bookedByUser);
                     response.sendRedirect("bookingDetails.jsp?bookingId=" + bookingId);
                 } catch (SQLException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    Logger.log(e.getMessage());
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
                 }
             } else {
@@ -58,7 +58,6 @@ public class ConfirmBookingServlet extends HttpServlet {
 
         try {
             connection.setAutoCommit(false);
-
             // Generate Booking ID
             bookingId = generateBookingID();
 
@@ -171,7 +170,7 @@ public class ConfirmBookingServlet extends HttpServlet {
                 connection.close();
             }
             catch (SQLException e) {
-                e.printStackTrace();
+                Logger.log(e.getMessage());
             }
 
         return new BookingDetails(passengers,flight);

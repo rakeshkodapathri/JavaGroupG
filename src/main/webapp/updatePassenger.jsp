@@ -25,58 +25,84 @@
     }
 %>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Passenger Details</title>
-    <link rel="stylesheet" href="css/updatePasenger.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-<div class="navbar">
-    <a href="HomePageServlet">Home</a>
-    <a href = allBookingsServlet>Bookings</a>
-    <a style="float: right" href="LoginServlet">Log Out</a>
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="HomePageServlet">FlyAway</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="allBookingsServlet">Bookings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="LoginServlet">Log Out</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
-<%
-    String errorMessage = (String) session.getAttribute("error");
-    if (errorMessage != null) {
-        out.println("<p style='color:red;'>" + errorMessage + "</p>");
-        session.removeAttribute("error");
-    }
-%>
+<div class="container mt-4">
+    <%
+        String errorMessage = (String) session.getAttribute("error");
+        if (errorMessage != null) {
+            out.println("<div class='alert alert-danger'>" + errorMessage + "</div>");
+            session.removeAttribute("error");
+        }
+    %>
 
-<div class="form-container">
     <h2>Update Passenger Details</h2>
     <form action="UpdateBookingServlet" method="post">
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" value="<%= fullName %>" required><br>
+        <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" class="form-control" value="<%= fullName %>" required>
+        </div>
 
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" value="<%= age %>" required><br>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" class="form-control" value="<%= age %>" required>
+        </div>
 
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" value="<%= phone %>" required><br>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" class="form-control" value="<%= phone %>" required>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<%= email %>" required><br>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="<%= email %>" required>
+        </div>
 
-        <label for="passportNum">Passport Number:</label>
-        <input type="text" id="passportNum" name="passportNum" value="<%= passportNum %>" readonly><br>
+        <div class="form-group">
+            <label for="passportNum">Passport Number:</label>
+            <input type="text" id="passportNum" name="passportNum" class="form-control" value="<%= passportNum %>" readonly>
+        </div>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-            <option value="Male" <%= "Male".equals(gender) ? "selected" : "" %>>Male</option>
-            <option value="Female" <%= "Female".equals(gender) ? "selected" : "" %>>Female</option>
-            <option value="Other" <%= "Other".equals(gender) ? "selected" : "" %>>Other</option>
-        </select><br>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" class="form-control" required>
+                <option value="Male" <%= "Male".equals(gender) ? "selected" : "" %>>Male</option>
+                <option value="Female" <%= "Female".equals(gender) ? "selected" : "" %>>Female</option>
+                <option value="Other" <%= "Other".equals(gender) ? "selected" : "" %>>Other</option>
+            </select>
+        </div>
 
-        <input type ="hidden" id = "bookingId" name = "bookingId" value=<%= bookingId %>>
-        <input type="submit" value="Update">
+        <input type="hidden" id="bookingId" name="bookingId" value="<%= bookingId %>">
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

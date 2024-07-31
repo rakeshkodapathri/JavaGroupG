@@ -13,13 +13,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/CityServlet")
 public class CityServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String query = "SELECT name FROM cities";
+        String query = "Select from_city name from flights union Select to_city from flights order by 1;";
 
         try {
             Connection connection = DatabaseUtil.getConnection();
@@ -33,7 +31,7 @@ public class CityServlet extends HttpServlet {
 
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.log(e.getMessage());
         } finally {
             out.close();
         }

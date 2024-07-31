@@ -82,13 +82,11 @@ public class HomePageServlet extends HttpServlet {
                 flight.setPrice(resultSet.getDouble("price"));
                 flight.setDepartureDate(resultSet.getString("departure_date"));
                 flight.setSeats_Available(resultSet.getString("seats_available"));
-
                 flights.add(flight);
             }
-
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.log(e.getMessage());
         }
 
         return flights;

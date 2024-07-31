@@ -54,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.log(e.getMessage());
             request.setAttribute("errorMessage", "Database error: " + e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
