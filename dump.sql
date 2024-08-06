@@ -27,7 +27,7 @@ CREATE TABLE `flights` (
 
 INSERT INTO `flights` (`flight_number`, `airline`, `from_city`, `to_city`, `departure_time`, `arrival_time`, `price`, `departure_date`, `seats_Available`, `bookedByUser`)
 VALUES
-('FL001', 'Airline A', 'New York', 'Los Angeles', '08:30:00', '11:30:00', 150.00, '2024-08-10', 150, 'user1'),
+('FL001', 'Airline A', 'New York', 'Los Angeles', '08:30:00', '11:30:00', 150.00, '2024-08-11', 150, 'user1'),
 ('FL002', 'Airline B', 'Chicago', 'Miami', '09:00:00', '13:00:00', 120.50, '2024-08-11', 200, 'user2'),
 ('FL003', 'Airline C', 'San Francisco', 'Seattle', '10:45:00', '12:30:00', 90.75, '2024-08-12', 175, 'user3'),
 ('FL004', 'Airline D', 'Dallas', 'Atlanta', '06:15:00', '08:45:00', 110.00, '2024-08-13', 180, 'user4'),
