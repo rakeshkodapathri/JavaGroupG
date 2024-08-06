@@ -1,0 +1,95 @@
+CREATE TABLE `User` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('ADMIN','PASSENGER') NOT NULL DEFAULT 'PASSENGER',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+);
+
+insert into user values("1","admin@gmail.com","Admin",1509442,"ADMIN");
+
+CREATE TABLE `flights` (
+  `flight_number` varchar(10) NOT NULL,
+  `airline` varchar(50) DEFAULT NULL,
+  `from_city` varchar(50) DEFAULT NULL,
+  `to_city` varchar(50) DEFAULT NULL,
+  `departure_time` time DEFAULT NULL,
+  `arrival_time` time DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `departure_date` date DEFAULT NULL,
+  `seats_Available` int DEFAULT NULL,
+  `bookedByUser` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`flight_number`)
+);
+
+INSERT INTO `flights` (`flight_number`, `airline`, `from_city`, `to_city`, `departure_time`, `arrival_time`, `price`, `departure_date`, `seats_Available`, `bookedByUser`)
+VALUES
+('FL001', 'Airline A', 'New York', 'Los Angeles', '08:30:00', '11:30:00', 150.00, '2024-08-10', 150, 'user1'),
+('FL002', 'Airline B', 'Chicago', 'Miami', '09:00:00', '13:00:00', 120.50, '2024-08-11', 200, 'user2'),
+('FL003', 'Airline C', 'San Francisco', 'Seattle', '10:45:00', '12:30:00', 90.75, '2024-08-12', 175, 'user3'),
+('FL004', 'Airline D', 'Dallas', 'Atlanta', '06:15:00', '08:45:00', 110.00, '2024-08-13', 180, 'user4'),
+('FL005', 'Airline E', 'Boston', 'Houston', '12:00:00', '15:30:00', 140.25, '2024-08-14', 190, 'user5'),
+('FL006', 'Airline F', 'Denver', 'Las Vegas', '11:30:00', '13:00:00', 80.00, '2024-08-15', 160, 'user6'),
+('FL007', 'Airline G', 'Orlando', 'Philadelphia', '07:00:00', '09:45:00', 130.00, '2024-08-16', 170, 'user7'),
+('FL008', 'Airline H', 'Phoenix', 'San Diego', '05:30:00', '07:15:00', 95.00, '2024-08-17', 200, 'user8'),
+('FL009', 'Airline I', 'Detroit', 'San Antonio', '14:00:00', '17:00:00', 115.50, '2024-08-18', 140, 'user9'),
+('FL010', 'Airline J', 'Nashville', 'New Orleans', '16:30:00', '18:30:00', 105.00, '2024-08-19', 180, 'user10'),
+('FL011', 'Airline K', 'Charlotte', 'Minneapolis', '18:00:00', '20:30:00', 125.75, '2024-08-20', 160, 'user11'),
+('FL012', 'Airline L', 'Portland', 'Salt Lake City', '19:45:00', '22:00:00', 135.00, '2024-08-21', 150, 'user12'),
+('FL013', 'Airline M', 'Tampa', 'Cleveland', '20:30:00', '23:15:00', 110.50, '2024-08-22', 170, 'user13'),
+('FL014', 'Airline N', 'San Jose', 'Kansas City', '21:00:00', '00:30:00', 150.25, '2024-08-23', 200, 'user14'),
+('FL015', 'Airline O', 'Indianapolis', 'Columbus', '22:30:00', '23:30:00', 75.00, '2024-08-24', 150, 'user15'),
+('FL016', 'Airline P', 'Memphis', 'Louisville', '23:45:00', '01:00:00', 85.50, '2024-08-25', 180, 'user16'),
+('FL017', 'Airline Q', 'Baltimore', 'St. Louis', '06:00:00', '08:30:00', 95.75, '2024-08-26', 190, 'user17'),
+('FL018', 'Airline R', 'Milwaukee', 'Pittsburgh', '07:15:00', '09:15:00', 105.25, '2024-08-27', 170, 'user18'),
+('FL019', 'Airline S', 'Albuquerque', 'Cincinnati', '08:45:00', '11:15:00', 120.00, '2024-08-28', 200, 'user19'),
+('FL020', 'Airline T', 'Omaha', 'Raleigh', '10:00:00', '12:45:00', 130.50, '2024-08-29', 160, 'user20'),
+('FL021', 'Airline U', 'Tucson', 'Richmond', '11:30:00', '14:00:00', 140.00, '2024-08-30', 150, 'user21'),
+('FL022', 'Airline V', 'Fresno', 'Sacramento', '12:15:00', '13:30:00', 70.25, '2024-08-31', 180, 'user22'),
+('FL023', 'Airline W', 'Long Beach', 'Oklahoma City', '13:45:00', '17:00:00', 150.75, '2024-09-01', 140, 'user23'),
+('FL024', 'Airline X', 'Mesa', 'Jacksonville', '15:00:00', '18:00:00', 160.00, '2024-09-02', 170, 'user24'),
+('FL025', 'Airline Y', 'Colorado Springs', 'Newark', '16:30:00', '20:00:00', 180.50, '2024-09-03', 160, 'user25'),
+('FL026', 'Airline Z', 'Virginia Beach', 'Buffalo', '17:45:00', '19:45:00', 85.00, '2024-09-04', 150, 'user26'),
+('FL027', 'Airline AA', 'Fort Worth', 'Rochester', '19:15:00', '21:30:00', 95.25, '2024-09-05', 180, 'user27'),
+('FL028', 'Airline BB', 'El Paso', 'Hartford', '20:00:00', '23:15:00', 110.75, '2024-09-06', 140, 'user28'),
+('FL029', 'Airline CC', 'Honolulu', 'Providence', '21:30:00', '01:00:00', 200.00, '2024-09-07', 200, 'user29'),
+('FL030', 'Airline DD', 'Birmingham', 'Des Moines', '23:00:00', '01:30:00', 130.50, '2024-09-08', 190, 'user30'),
+('FL031', 'Airline EE', 'Anchorage', 'Little Rock', '05:00:00', '08:30:00', 170.75, '2024-09-09', 160, 'user31'),
+('FL032', 'Airline FF', 'Boise', 'Augusta', '06:30:00', '10:15:00', 150.00, '2024-09-10', 170, 'user32'),
+('FL033', 'Airline GG', 'Baton Rouge', 'Montgomery', '08:00:00', '09:45:00', 85.50, '2024-09-11', 180, 'user33'),
+('FL034', 'Airline HH', 'Chattanooga', 'Mobile', '09:15:00', '11:30:00', 95.75, '2024-09-12', 190, 'user34'),
+('FL035', 'Airline II', 'Columbia', 'Reno', '10:45:00', '14:00:00', 125.25, '2024-09-13', 200, 'user35'),
+('FL036', 'Airline JJ', 'Dayton', 'Spokane', '12:00:00', '14:30:00', 145.00, '2024-09-14', 160, 'user36'),
+('FL037', 'Airline KK', 'Duluth', 'Toledo', '13:30:00', '15:45:00', 95.50, '2024-09-15', 150, 'user37'),
+('FL038', 'Airline LL', 'Evansville', 'Wichita', '15:00:00', '17:15:00', 110.75, '2024-09-16', 180, 'user38'),
+('FL039', 'Airline MM', 'Fargo', 'Lincoln', '16:30:00', '18:30:00', 120.00, '2024-09-17', 140, 'user39'),
+('FL040', 'Airline NN', 'Gainesville', 'Greensboro', '18:00:00', '20:00:00', 135.50, '2024-09-18', 170, 'user40'),
+('FL041', 'Airline OO', 'Huntsville', 'Madison', '19:30:00', '21:45:00', 145.75, '2024-09-19', 150, 'user41'),
+('FL042', 'Airline PP', 'Idaho Falls', 'Springfield', '21:00:00', '23:15:00', 160.00, '2024-09-20', 160, 'user42'),
+('FL043', 'Airline QQ', 'Jackson', 'South Bend', '22:30:00', '00:45:00', 175.25, '2024-09-21', 170, 'user43'),
+('FL044', 'Airline RR', 'Knoxville', 'Tallahassee', '23:45:00', '02:00:00', 190.00, '2024-09-22', 180, 'user44'),
+('FL045', 'Airline SS', 'Lansing', 'Trenton', '05:30:00', '07:30:00', 200.50, '2024-09-23', 200, 'user45'),
+('FL046', 'Airline TT', 'Missoula', 'Santa Fe', '07:00:00', '10:15:00', 220.00, '2024-09-24', 190, 'user46'),
+('FL047', 'Airline UU', 'Ogden', 'Sioux Falls', '08:30:00', '11:30:00', 130.50, '2024-09-25', 170, 'user47'),
+('FL048', 'Airline VV', 'Pocatello', 'Vancouver', '10:00:00', '13:00:00', 140.75, '2024-09-26', 160, 'user48'),
+('FL049', 'Airline WW', 'Rapid City', 'Waterloo', '11:30:00', '14:30:00', 160.25, '2024-09-27', 150, 'user49'),
+('FL050', 'Airline XX', 'Shreveport', 'Yuma', '13:00:00', '16:00:00', 180.00, '2024-09-28', 180, 'user50');
+
+CREATE TABLE `passengers` (
+  `fullName` varchar(255) NOT NULL,
+  `age` int NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `passportNum` varchar(50) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `flightNumber` varchar(50) DEFAULT NULL,
+  `Booking_ID` varchar(100) NOT NULL,
+  `bookedByUser` varchar(100) DEFAULT NULL,
+  UNIQUE KEY `passportNum` (`passportNum`,`Booking_ID`),
+  KEY `flightNumber` (`flightNumber`),
+  CONSTRAINT `passengers_ibfk_1` FOREIGN KEY (`flightNumber`) REFERENCES `flights` (`flight_number`)
+);
+
